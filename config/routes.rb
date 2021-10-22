@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "my_friends", to: "users#my_friends"
   get "my_posts", to: "users#my_posts"
   get "search_user", to: "users#search"
+  resources :posts, only: [:destroy]
 end

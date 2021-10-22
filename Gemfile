@@ -27,7 +27,7 @@ gem "devise"
 gem "devise-bootstrap-views", "~> 1.0"
 gem "font-awesome-rails"
 gem "font_awesome5_rails"
-
+gem "time_difference"
 
 # gem 'image_processing', '~> 1.2'
 

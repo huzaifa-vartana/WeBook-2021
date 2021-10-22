@@ -21,9 +21,9 @@ class UsersController < ApplicationController
     puts "working"
   end
 
-  # def my_posts
-  #   @posts = current_user.posts
-  # end
+  def my_posts
+    @posts = current_user.posts
+  end
 
   def search
     friend = params[:friend]

@@ -1,0 +1,14 @@
+<% @posts.each do |post| %>
+<div class="card  text-center mt-3 ">
+  <div class="card-header alert alert-success " >
+    Featured <%= link_to "Destroy", post, method: :delete, data: { confirm: "Are you sure?" }, class: "btn pull-right btn-sm btn-danger" %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= post.body %></h5>
+  </div>
+  
+  <div class="card-footer text-muted">
+  <%= TimeDifference.between(post.created_at, Time.new).humanize %>  ago </div>
+
+</div>    
+<% end %>
