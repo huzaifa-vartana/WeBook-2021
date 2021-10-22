@@ -1,0 +1,60 @@
+@import "bootstrap/dist/css/bootstrap";
+@import "bootstrap/dist/css/bootstrap";
+
+.navbar {
+  background-color: #cad5fc !important;
+}
+
+h1 {
+  color: #002070;
+}
+
+.search-area {
+  padding-top: 50px;
+}
+
+.results-block strong {
+  display: inline-block;
+  width: 5rem;
+}
+
+.friends-results-block strong {
+  display: inline-block;
+  width: 9rem;
+}
+
+div.friend-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.ticker-column {
+  width: 6rem;
+}
+
+.price-column {
+  width: 7rem;
+}
+
+.actions-column {
+  width: 10rem;
+}
+
+.friend-actions-column {
+  width: 15rem;
+}
+
+.email-column {
+  width: 6rem; /* aka as small as possible */
+}
+
+.number-cell {
+  padding-right: 1rem;
+  text-align: right;
+}
+
+.user-name {
+  margin-top: 3%;
+  padding-right: 1rem;
+}
