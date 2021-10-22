@@ -12,13 +12,7 @@ class UsersController < ApplicationController
   end
 
   def my_friends
-    # @friends = (current_user.friends.each {
-    #   |f|
-    #   f.created_at
-    # }).flatten
     @friends = current_user.friends
-
-    puts "working"
   end
 
   def my_posts
