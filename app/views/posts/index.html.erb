@@ -35,13 +35,14 @@
     <p class="card-text"><%= post.body %></p>
   </div>
   <div class="card-footer text-muted">
-      Likes: 01 - Comments: 09
+      Likes: <%= post.likes.count  %> - Comments: 09
   </div>
   <div class="card-footer text-muted">
       <%= TimeDifference.between(post.created_at, Time.new).humanize %>  ago </div>
   <div class="card-footer text-muted">
-          <a href="#" class="btn btn-outline-success"><i class="bi bi-star"></i> Like</a>
-          <a href="#" class="btn btn-outline-info"><i class="bi bi-pencil"></i> Comment</a>
+  <% css_class = !current_user.liked_post?(post) ? "bi-star" : "bi-star-fill" %>
+  <%= link_to "Like",like_post_path(post_id:post.id), method: :post ,class: "btn btn-outline-primary bi #{css_class} " %>
+    <a href="#" class="btn btn-outline-info"><i class="bi bi-pencil"></i> Comment</a>
            <%= link_to " View Post", post_path(post), class: "btn pull-right btn btn-outline-dark bi bi-view-stacked" %>
            </div>
   </div>

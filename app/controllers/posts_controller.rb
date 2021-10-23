@@ -8,6 +8,25 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def like
+    @post = Post.find(params[:post_id])
+
+    if current_user.liked_post?(@post)
+      post_like = Like.where(user_id: current_user.id, likeable_id: @post.id, likeable_type: @post.class.name)
+      if Like.destroy(post_like.first.id)
+        redirect_back(fallback_location: root_path)
+      end
+    else
+      respond_to do |format|
+        if Like.create(likeable: @post, user_id: current_user.id)
+          format.html { redirect_to root_path, notice: "Liked" }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+
   # GET /posts/1 or /posts/1.json
   def show
   end

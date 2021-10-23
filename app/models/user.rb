@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :posts
   has_many :friendships
+  has_many :likes
   has_many :friends, through: :friendships do
     def just_date
       select(:created_at)
@@ -18,6 +19,14 @@ class User < ApplicationRecord
 
   def friends_with?(id)
     friends.where(id: id).exists?
+  end
+
+  def liked_post?(post)
+    likes.where(
+      {
+        :likeable_id => post.id, :likeable_type => post.class.name,
+      }
+    ).count > 0
   end
 
   def self.search(friend)
