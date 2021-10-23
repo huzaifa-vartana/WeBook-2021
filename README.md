@@ -1,24 +1,11 @@
-# README
+# WeBook
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Social Media Web Application (Facebook Clone) built using Ruby on Rails and Bootstrap.
 
-Things you may want to cover:
+It covers the following functionalities:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- User Auth
+- Followers and Following (Users)
+- Posts
+- Likes on Comments and Posts
+- Comments on Posts and also nested comments
