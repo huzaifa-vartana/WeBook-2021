@@ -1,7 +1,6 @@
 <h1 class="text-center">Track Friendships</h1>
 <div class="search-area">
   <h3>Search for friends</h3>
-
   <%= form_tag search_user_path, remote: true, method: :get do %>
     <div class="form-group row">
       <div class="col-sm-9">
@@ -18,15 +17,12 @@
         <% end %>
       </div>
     </div>
-
   <% end %>
 </div>
-
 <div id="results"></div>
-
-<% if @friends.empty? %>
+<% if @friendships.empty? %>
   <h5 class="text-center text-primary mt-3">You don't currently have any friendships</h5>
 <% else %>
-<h3 class="text-center">Following</h3>
+  <h3 class="text-center">Following</h3>
   <%= render 'friends/list' %>
 <% end %>

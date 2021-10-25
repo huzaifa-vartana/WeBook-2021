@@ -1,0 +1,20 @@
+<% commentable.comments.each do |comment| %>
+  <% if comment.commentable_type == "Post" %>
+    <div class="card card-body bg-light mt-2 mb-2" >
+      <div>@<%= comment.user.full_name %> </div>
+      <%= comment.body %>
+      <% css_class = !current_user.liked_comment?(comment) ? "bi-hand-thumbs-up" : "bi-hand-thumbs-up-fill" %>
+      <%= link_to " #{comment.likes.count}", like_comment_path(comment_id: comment.id), method: :post, class: "bi #{css_class} " %>
+      <%= render "comments/form", commentable: comment %>
+    </div>
+  <% else %>
+    <div class="card card-body bg-light mt-2 comment">
+      <div>@<%= comment.user.full_name %> </div>
+      <%= comment.body %>
+      <% css_class = !current_user.liked_comment?(comment) ? "bi-hand-thumbs-up" : "bi-hand-thumbs-up-fill" %>
+      <%= link_to " #{comment.likes.count}", like_comment_path(comment_id: comment.id), method: :post, class: "bi #{css_class} " %>
+      <%= render "comments/form", commentable: comment %>
+    </div>
+  <% end %>
+  <%= render "posts/comments", commentable: comment %>
+<% end %>

@@ -20,3 +20,8 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 @import "@fortawesome/fontawesome-free/scss/solid";
 @import "@fortawesome/fontawesome-free/scss/regular";
 @import "@fortawesome/fontawesome-free/scss/v4-shims";
+.comment {
+  margin-left: 50px;
+  border-left: 2px dotted blue;
+  padding: 0 10px;
+}

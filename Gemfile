@@ -28,7 +28,8 @@ gem "devise-bootstrap-views", "~> 1.0"
 gem "font-awesome-rails"
 gem "font_awesome5_rails"
 gem "time_difference"
-
+gem "pagy" # omit patch digit and use the latest if possible
+gem "ransack"
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb

@@ -10,18 +10,18 @@
         </tr>
       </thead>
       <tbody>
-      <% @friends.each do |friend| %>
-        <tr>
-          <td><%= friend.email %></td>
-          <td><%= friend.full_name %></td>
-          <td><%= friend.created_at %>------ <%= Time.now %></td>
-          <td>
-            <%= link_to 'View profile', friend, class: 'btn btn-sm btn-info mr-2'%>
-            <%= link_to 'Stop following', friendship_path(friend), method: :delete,
+        <% @friendships.each do |friendship| %>
+          <tr>
+            <td><%= friendship.friend.email %></td>
+            <td><%= friendship.friend.full_name %></td>
+            <td><%= friendship.created_at.strftime("%d %B, %Y") %></td>
+            <td>
+              <%= link_to 'View profile', friendship.friend, class: 'btn btn-sm btn-info mr-2'%>
+              <%= link_to 'Stop following', friendship_path(friendship.friend), method: :delete,
                         data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-warning'%>
-          </td>
-        </tr>
-      <% end %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

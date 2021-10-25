@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     ids = current_user.friends.pluck(:id) << current_user.id
-    @posts = Post.where(user_id: ids).order("created_at DESC")
+    @q = Post.where(user_id: ids).order("created_at DESC").ransack(params[:q])
+    @pagy, @posts = pagy(@q.result(distinct: true), items: 5)
     @post = Post.new
   end
 
@@ -17,14 +18,16 @@ class PostsController < ApplicationController
         redirect_back(fallback_location: root_path)
       end
     else
-      respond_to do |format|
-        if Like.create(likeable: @post, user_id: current_user.id)
-          format.html { redirect_to root_path, notice: "Liked" }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-        end
+      if Like.create(likeable: @post, user_id: current_user.id)
+        redirect_back(fallback_location: root_path)
+      else
+        flash[:alert] = "Error"
       end
     end
+  end
+
+  def comment
+    redirect_to my_friends_path
   end
 
   # GET /posts/1 or /posts/1.json

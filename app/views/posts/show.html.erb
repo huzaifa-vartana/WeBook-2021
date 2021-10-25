@@ -1,13 +1,22 @@
-
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="container">
+  <div class="card text-center  mt-5">
+    <div class="card-header">
+      @<%= @post.user.full_name %>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= @post.body %></p>
+    </div>
+    <div class="card-footer text-muted">
+      Likes: <%= @post.likes.count %> - Comments: <%= @post.comments.count %>
+    </div>
+    <div class="card-footer text-muted">
+      <%= TimeDifference.between(@post.created_at, Time.new).humanize %>  ago </div>
+    <div class="card-footer text-muted">
+      <% css_class = !current_user.liked_post?(@post) ? "bi-star" : "bi-star-fill" %>
+      <%= link_to "Like", like_post_path(post_id: @post.id), method: :post, class: "btn btn-outline-primary bi #{css_class} " %>
+    </div>
+  </div>
+  <h3 class="text-center mt-5 " >Comments</h3>
+  <%= render "posts/comments", commentable: @post %>
+  <%= render "comments/form", commentable: @post, class:"mt-6 " %>
+</div>

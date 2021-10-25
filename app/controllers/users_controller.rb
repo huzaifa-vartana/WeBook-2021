@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   end
 
   def my_friends
-    @friends = current_user.friends
+    # @friends = current_user.friends
+    @friendships = current_user.friendships.includes(:friend)
   end
 
   def my_posts

@@ -2,11 +2,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :friendships
   has_many :likes
-  has_many :friends, through: :friendships do
-    def just_date
-      select(:created_at)
-    end
-  end
+  has_many :comments
+  has_many :friends, through: :friendships
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -25,6 +22,14 @@ class User < ApplicationRecord
     likes.where(
       {
         :likeable_id => post.id, :likeable_type => post.class.name,
+      }
+    ).count > 0
+  end
+
+  def liked_comment?(comment)
+    likes.where(
+      {
+        :likeable_id => comment.id, :likeable_type => comment.class.name,
       }
     ).count > 0
   end

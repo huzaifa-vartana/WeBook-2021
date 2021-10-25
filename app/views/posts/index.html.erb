@@ -1,9 +1,8 @@
 <h1 class="text-center">Newsfeed  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
- <i class="bi bi-plus-lg"></i> New Post
-</button>  </h1>
+    <i class="bi bi-plus-lg"></i> New Post
+  </button>
+</h1>
 <!-- Button trigger modal -->
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -15,36 +14,52 @@
         </button>
       </div>
       <div class="modal-body">
-      <%= render "posts/form", post: @post %>      
-    </div>
+        <%= render "posts/form", post: @post %>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-
-
 <div class="container">
-<% @posts.each do |post| %>
-<div class="card text-center  mt-5">
-  <div class="card-header">
-    @<%= post.user.full_name %>
-  </div>
-  <div class="card-body">
-    <p class="card-text"><%= post.body %></p>
-  </div>
-  <div class="card-footer text-muted">
-      Likes: <%= post.likes.count  %> - Comments: 09
-  </div>
-  <div class="card-footer text-muted">
-      <%= TimeDifference.between(post.created_at, Time.new).humanize %>  ago </div>
-  <div class="card-footer text-muted">
-  <% css_class = !current_user.liked_post?(post) ? "bi-star" : "bi-star-fill" %>
-  <%= link_to "Like",like_post_path(post_id:post.id), method: :post ,class: "btn btn-outline-primary bi #{css_class} " %>
-    <a href="#" class="btn btn-outline-info"><i class="bi bi-pencil"></i> Comment</a>
-           <%= link_to " View Post", post_path(post), class: "btn pull-right btn btn-outline-dark bi bi-view-stacked" %>
-           </div>
-  </div>
+  <% @posts.each do |post| %>
+    <div class="card text-center  mt-5">
+      <div class="card-header">
+        @<%= post.user.full_name %>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= post.body %></p>
+      </div>
+      <div class="card-footer text-muted">
+        Likes: <%= post.likes.count  %> - Comments: <%= post.comments.count %>
+      </div>
+      <div class="card-footer text-muted">
+        <%= TimeDifference.between(post.created_at, Time.new).humanize %>  ago </div>
+      <div class="card-footer text-muted">
+        <% css_class = !current_user.liked_post?(post) ? "bi-star" : "bi-star-fill" %>
+        <%= link_to "Like",like_post_path(post_id:post.id), method: :post ,class: "btn btn-outline-primary bi #{css_class} " %>
+        <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Comment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= render "comments/form", commentable: post,class:"mt-6 " %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-info  bi bi-pencil" data-toggle="modal" data-target="#commentModal"> Write Comment</button>
+        <%= link_to " View Post", post_path(post), class: "btn pull-right btn btn-outline-dark bi bi-view-stacked" %>
+      </div>
+    </div>
   <% end %>
 </div>

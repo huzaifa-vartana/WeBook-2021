@@ -1,15 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
   <div class="container">
     <%= link_to 'WeBook', root_path, class: 'navbar-brand' %>
     <% if current_user %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-    
-
           <li class="nav-item <%= "active" if request.path == my_posts_path %>">
             <%= link_to "My Posts", my_posts_path, class: "nav-link" %>
           </li>
@@ -18,10 +15,9 @@
           </li>
           <li class="nav-item <%= "active" if request.path == edit_user_registration_path %>">
             <%= link_to edit_user_registration_path, class: "nav-link" do %>
-            <%= fa_icon "edit" %> Edit Profile
+              <%= fa_icon "edit" %> Edit Profile
             <% end %>
           </li>
-
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item user-name"    >
@@ -31,10 +27,15 @@
             <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-outline-danger mr-2' %>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <% if current_page?('/')%>
+          <form class="form-inline my-2 my-lg-0">
+            <%# <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> %>
+            <%= search_form_for @q do |f| %>
+              <%= f.search_field :body_cont, class: "form-control mr-sm-2" %>
+              <%= f.submit class:"btn btn-sm btn-outline-success my-2 my-sm-0"  %>
+            <% end %>
+          </form>
+        <% end %>
       </div>
     <% end %>
   </div>
