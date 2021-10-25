@@ -9,3 +9,13 @@ It covers the following functionalities:
 - Posts
 - Likes on Comments and Posts
 - Comments on Posts and also nested comments
+
+GEMS Used Custom 
+- gem "devise"
+- gem "devise-bootstrap-views", "~> 1.0"
+- gem "devise-bootstrap-views", "~> 1.0"
+- gem "font-awesome-rails"
+- gem "font_awesome5_rails"
+- gem "time_difference"
+- gem "pagy" # omit patch digit and use the latest if possible
+- gem "ransack"
