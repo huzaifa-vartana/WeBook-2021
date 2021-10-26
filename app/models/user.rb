@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  has_many :posts
-  has_many :friendships
-  has_many :likes
-  has_many :comments
-  has_many :friends, through: :friendships
+  has_many :posts, dependent: :delete_all
+  has_many :friendships, dependent: :delete_all
+  has_many :likes, dependent: :delete_all
+  has_many :comments, dependent: :delete_all
+  has_many :friends, through: :friendships, dependent: :delete_all
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     ids = current_user.friends.pluck(:id) << current_user.id
-    @q = Post.where(user_id: ids).order("created_at DESC").ransack(params[:q])
+    @q = Post.where(user_id: ids).order("created_at DESC").includes(:comments).ransack(params[:q])
     @pagy, @posts = pagy(@q.result(distinct: true), items: 5)
     @post = Post.new
   end
