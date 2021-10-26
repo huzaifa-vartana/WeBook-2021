@@ -36,57 +36,57 @@
             </div>
             <div class="pull-left meta">
               <div class="title h5">
-                <a href="#"><b> @<%= post.user.full_name %></b></a>
-                made a post.
+                <b>@<%= link_to post.user.full_name, post.user%>
+                  made a post.
+                </div>
+                <h6 class="text-muted time"><%= TimeDifference.between(post.created_at, Time.new).humanize %> ago</h6>
               </div>
-              <h6 class="text-muted time"><%= TimeDifference.between(post.created_at, Time.new).humanize %> ago</h6>
             </div>
-          </div>
-          <div class="post-description">
-            <p> <%= post.body %></p>
-            <div class="stats">
-              <% css_class = !current_user.liked_post?(post) ? "bi-hand-thumbs-up" : "bi-hand-thumbs-up-fill" %>
-              <%= link_to " #{post.likes.count}",like_post_path(post_id:post.id), method: :post ,class: "#{css_class} " %>
-              <i class="bi bi-pencil "></i> <%= post.comments.count%>
-              <%= link_to " View", post_path(post), class: "pull-right bi bi-view-stacked" %>
+            <div class="post-description">
+              <p> <%= post.body %></p>
+              <div class="stats">
+                <% css_class = !current_user.liked_post?(post) ? "bi-hand-thumbs-up" : "bi-hand-thumbs-up-fill" %>
+                <%= link_to " #{post.likes.count}",like_post_path(post_id:post.id), method: :post ,class: "#{css_class} " %>
+                <i class="bi bi-pencil "></i> <%= post.comments.count%>
+                <%= link_to " View", post_path(post), class: "pull-right bi bi-view-stacked" %>
+              </div>
             </div>
-          </div>
-          <div class="post-footer">
-            <div class="input-group">
-              <%= render "comments/form", commentable: post,class:"mt-6 form-control " %>
-              <span class="input-group-addon">
-                <a href="#"><i class="fa fa-edit"></i></a>
-              </span>
-            </div>
-            <% if post.comments.last %>
-              <ul class="comments-list">
-                <li class="comment">
-                  <a class="pull-left" href="#">
-                    <img
+            <div class="post-footer">
+              <div class="input-group">
+                <%= render "comments/form", commentable: post,class:"mt-6 form-control " %>
+                <span class="input-group-addon">
+                  <a href="#"><i class="fa fa-edit"></i></a>
+                </span>
+              </div>
+              <% if post.comments.last %>
+                <ul class="comments-list">
+                  <li class="comment">
+                    <a class="pull-left" href="#">
+                      <img
                     class="avatar"
                     src="https://bootdey.com/img/Content/user_1.jpg"
                     alt="avatar"
                   />
-                    </a>
-                    <div class="comment-body">
-                      <div class="comment-heading">
-                        <h4 class="user"> <%= post.comments.last.user.full_name%> </h4>
-                        <h5 class="time"><%=post.comments.last.created_at.strftime("%d %B, %Y")%></h5>
+                      </a>
+                      <div class="comment-body">
+                        <div class="comment-heading">
+                          <h4 class="user"> <%= post.comments.last.user.full_name%> </h4>
+                          <h5 class="time"><%=post.comments.last.created_at.strftime("%d %B, %Y")%></h5>
+                        </div>
+                        <p> <%= post.comments.last.body%></p>
+                        <% css_class = !current_user.liked_comment?(post.comments.last) ? "bi-hand-thumbs-up" : "bi-hand-thumbs-up-fill" %>
+                        <%= link_to " #{post.comments.last.likes.count}", like_comment_path(comment_id: post.comments.last.id), method: :post, class: "bi #{css_class} " %>
                       </div>
-                      <p> <%= post.comments.last.body%></p>
-                      <% css_class = !current_user.liked_comment?(post.comments.last) ? "bi-hand-thumbs-up" : "bi-hand-thumbs-up-fill" %>
-                      <%= link_to " #{post.comments.last.likes.count}", like_comment_path(comment_id: post.comments.last.id), method: :post, class: "bi #{css_class} " %>
-                    </div>
-                  </li>
-                </ul>
-              <% end %>
+                    </li>
+                  </ul>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="d-flex mt-4">
-      <div class="mx-auto ">
-        <%== pagy_bootstrap_nav(@pagy) %>
+        <% end %>
       </div>
-    </div>
+      <div class="d-flex mt-4">
+        <div class="mx-auto ">
+          <%== pagy_bootstrap_nav(@pagy) %>
+        </div>
+      </div>
