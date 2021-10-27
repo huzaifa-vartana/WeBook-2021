@@ -9,10 +9,10 @@
 <% elsif current_user.friends_with? @user.id  %>
   <h4>
     <span class="badge badge-info">
-      You are following <%= @user.first_name %>
+      You are following - <%= @user.first_name %>
     </span>
     <span class="badge badge-info">
-      User Joined  <%= @user.created_at %>
+      User Joined - <%= @user.created_at.strftime("%d %B, %Y") %>
     </span>
   </h4>
 <% else %>

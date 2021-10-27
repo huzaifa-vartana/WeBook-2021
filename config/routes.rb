@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root to: "posts#index"
   get "my_friends", to: "users#my_friends"
   get "my_posts", to: "users#my_posts"
-  get "search_user", to: "users#search"
+  # get "search_user", to: "users#my_friends"
   resources :posts, only: [:destroy]
   post "like_post/:post_id", to: "posts#like", as: "like_post"
   post "like_comment/:comment_id", to: "comments#like", as: "like_comment"
