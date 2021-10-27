@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def my_friends
     @friendships = current_user.friendships.includes(:friend)
-    @q = User.ransack(params[:q])
+    @q = User.where().not(id: current_user.id).ransack(params[:q])
     @users = @q.result(distinct: true)
   end
 
