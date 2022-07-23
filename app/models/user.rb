@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :posts, dependent: :delete_all
   has_many :friendships, dependent: :delete_all
@@ -11,7 +13,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def filter_current_user(list)
-    list.reject { |user| user.id == self.id }
+    list.reject { |user| user.id == id }
   end
 
   def friends_with?(id)
@@ -21,28 +23,30 @@ class User < ApplicationRecord
   def liked_post?(post)
     likes.where(
       {
-        :likeable_id => post.id, :likeable_type => post.class.name,
+        likeable_id: post.id, likeable_type: post.class.name,
       }
-    ).count > 0
+    ).count.positive?
   end
 
   def liked_comment?(comment)
     likes.where(
       {
-        :likeable_id => comment.id, :likeable_type => comment.class.name,
+        likeable_id: comment.id, likeable_type: comment.class.name,
       }
-    ).count > 0
+    ).count.positive?
   end
 
   def self.search(friend)
     friend = "%#{friend.strip}%"
-    users = where("email LIKE ? OR first_name LIKE ? OR last_name LIKE ?", friend, friend, friend)
+    users = where('email LIKE ? OR first_name LIKE ? OR last_name LIKE ?', friend, friend, friend)
     return nil if users.empty?
+
     users
   end
 
   def full_name
     return "#{first_name} #{last_name}" if first_name || last_name
-    "Unknown User "
+
+    'Unknown User '
   end
 end
