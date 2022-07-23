@@ -2,6 +2,12 @@
 
 Social Media Web Application (Facebook Clone) built using Ruby on Rails and Bootstrap.
 
+Installaion Steps
+- `bundle install`
+- `yarn`
+- `rails db:setup`
+- rails s
+
 It covers the following functionalities:
 
 - User Auth
