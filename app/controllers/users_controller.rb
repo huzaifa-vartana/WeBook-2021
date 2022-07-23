@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  def edit
-  end
+  def edit; end
 
   def show
     @user = User.find params[:id]
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
 
   def my_friends
     @friendships = current_user.friendships.includes(:friend)
-    @q = User.where().not(id: current_user.id).ransack(params[:q])
+    @q = User.where.not(id: current_user.id).ransack(params[:q])
     @users = @q.result(distinct: true)
   end
 
