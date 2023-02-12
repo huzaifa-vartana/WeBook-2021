@@ -1,6 +1,6 @@
-# fly.toml file generated for lingering-silence-1410 on 2023-02-12T16:03:12+05:00
+# fly.toml file generated for webook on 2023-02-12T16:09:27+05:00
 
-app = "lingering-silence-1410"
+app = "webook"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
