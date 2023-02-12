@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_back(fallback_location: root_path)
     else
-      redirect_to @commentable, alert: 'Error'
+      redirect_to @commentable, alert: @comment.errors.full_messages.to_sentence
     end
   end
 

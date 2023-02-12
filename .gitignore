@@ -16,6 +16,8 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+# Ignore Mac DS_Store files
+.DS_Store
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
