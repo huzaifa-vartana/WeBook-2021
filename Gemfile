@@ -65,3 +65,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'annotate'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "dockerfile-rails", ">= 1.0", :group => :development

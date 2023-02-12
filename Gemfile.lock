@@ -90,6 +90,8 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (1.1.0)
+    dockerfile-rails (1.0.13)
+      rails
     erubi (1.10.0)
     ffi (1.15.4)
     font-awesome-rails (4.7.0.7)
@@ -258,6 +260,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   devise-bootstrap-views (~> 1.0)
+  dockerfile-rails (>= 1.0)
   font-awesome-rails
   font_awesome5_rails
   jbuilder (~> 2.7)
