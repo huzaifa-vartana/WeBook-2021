@@ -6,11 +6,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
-# Use sqlite3 as the database for Active Record
-gem 'pg', group: :production # Use Puma as the app server
 gem 'puma', '~> 5.0'
-gem 'sqlite3', group: :development
+gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -24,6 +21,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Use Postgres as the database for Active Record
+gem 'pg'
 # Use Active Storage variant
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'

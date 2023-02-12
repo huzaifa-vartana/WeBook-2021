@@ -40,3 +40,31 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+/config/credentials/production.key
+/config/credentials/testing.key
+/config/credentials/environment.key
+/config/credentials/development.key
+/config/credentials/staging.key
+/config/credentials/ci.key
+/config/credentials/production.key
+/config/credentials/dockertest.key
+
+coverage
+
+.DS_Store
+/config/credentials/docker.key
+
+install.sh
+supervisord.pid
+spec/status_persistence.txt
+dump.rdb
+
+# for ctags
+tags
+.tags
+
+# fix rubocop for docker-vscode
+rubocop
+
+/config/credentials/preview.key
